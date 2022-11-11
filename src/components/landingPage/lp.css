@@ -1,0 +1,372 @@
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+.btn {
+    background-color: rgb(69, 153, 101);
+    border-radius: 50px;
+    position: absolute;
+    font-size: 16px;
+    right: 50px;
+    padding: 15px;
+    color: white;
+    border: none;
+    position: absolute;
+    top: 3px;
+    margin: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease-out;
+}
+
+#header-img {
+    height: 60px;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    background: rgb(85, 169, 121);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Quicksand", sans-serif;
+}
+
+.btn-menu {
+    font-size: 2rem;
+    color: #000;
+    cursor: pointer;
+}
+
+.btn-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+section {
+    padding: 0 var(--padding-x);
+}
+
+#home {
+    background-image: url("https://images.unsplash.com/photo-1531988042231-d39a9cc12a9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGJvb2tzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 80vmin;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#home .overlayy {
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+#home .header-message {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#home .header-message h2 {
+    font-size: 1.75rem;
+    color: #f7f7f7;
+    margin-bottom: 1rem;
+}
+
+#home .header-message p {
+    color: #cdcdcd;
+    margin-bottom: 2rem;
+}
+
+#home .header-message a {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: seagreen;
+    border-radius: 50rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.8rem;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-out;
+}
+
+#home .header-message a:hover {
+    transform: translateY(-1px);
+    background: rgb(69, 143, 101);
+}
+
+#services {
+    background: #f7f7f7;
+    padding: 4rem var(--padding-x);
+}
+
+#services .header-message {
+    width: 400px;
+    text-align: center;
+    margin: 0 auto 4rem auto;
+}
+
+#services .header-message h2 {
+    margin-bottom: 0.5rem;
+}
+
+#services .header-message p {
+    color: #3f3f3f;
+}
+
+.service {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.service img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.service .service-message h3 {
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.service .service-message p {
+    text-align: justify;
+}
+
+#how {
+    padding: 4rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#how #video {
+    width: 100%;
+    height: calc(250px + 10vmin);
+}
+
+.btn-view-more {
+    display: inline-block;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border: none;
+    outline: none;
+    background: #fff;
+    border-radius: 4px;
+    width: 100%;
+    transition: all 0.3s ease-out;
+    text-transform: uppercase;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.8rem;
+}
+
+.btn-view-more:hover {
+    box-shadow: 0 8px 10px -4px rgba(0, 0, 0, 0.1);
+}
+
+#contact {
+    padding: 4rem var(--padding-x);
+}
+
+#contact h2 {
+    text-align: center;
+}
+
+#form {
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: inline-block;
+    margin-bottom: 0.2rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    font-family: "Open Sans", sans-serif;
+    padding: 0.5rem;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    border-radius: 4px;
+    transition: all 0.3s ease-out;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.6);
+}
+
+.right {
+    text-align: right;
+}
+
+#submit {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    background: seagreen;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease-out;
+}
+
+#submit:hover {
+    background: rgb(69, 143, 101);
+    transform: translateX(4px);
+}
+
+footer {
+    padding: 2rem;
+    background: #333;
+    text-align: center;
+    color: #fff;
+}
+
+footer p a {
+    color: #cdcdcd;
+}
+
+.contact-us {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.services-images {
+    border-radius: 50%;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 14px;
+        --padding-x: 8rem;
+    }
+
+    #nav-bar .btn-close,
+    #header .btn-menu,
+    #nav-bar h2 {
+        display: none;
+    }
+
+    nav {
+        all: unset;
+    }
+
+    .nav-link {
+        all: unset;
+        margin-left: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+        position: relative;
+    }
+
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        width: 0;
+        height: 2px;
+        /* background: var(--hover-color); */
+        transition: all 0.3s ease-in;
+    }
+
+    .nav-link:hover {
+        background: unset;
+        color: var(--hover-color);
+    }
+
+    .nav-link:hover::before {
+        width: 100%;
+    }
+
+    #home .header-message {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .services {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .service {
+        justify-content: unset;
+        flex-direction: row;
+    }
+
+    .service:nth-child(2) img {
+        order: 2;
+        margin-right: 0;
+        margin-left: 2rem;
+    }
+
+    .service:nth-child(2) .service-message {
+        order: 1;
+    }
+
+    .service img {
+        width: 200px;
+        margin-right: 2rem;
+        margin-bottom: 0;
+    }
+
+    .service .service-message h3 {
+        text-align: left;
+    }
+
+    #how #video {
+        width: 80%;
+        height: 400px;
+    }
+
+    .prices {
+        width: 80%;
+    }
+
+    .price img {
+        height: 200px;
+        width: auto;
+    }
+
+    .btn-view-more {
+        width: 80%;
+    }
+
+    #form {
+        width: 80%;
+    }
+}

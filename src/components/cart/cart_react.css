@@ -1,0 +1,152 @@
+.container_c {
+    padding: 50px;
+    display: flex;
+}
+
+.left_c {
+    flex: 2;
+}
+
+.right_c {
+    flex: 1;
+}
+
+.imgContainer_c > img {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    object-fit: cover;
+}
+
+.table_c {
+    width: 100%;
+    border-spacing: 40px;
+    text-align: center;
+}
+
+.name_c {
+    font-weight: 500;
+    color: #d1411e;
+    font-size: 18px;
+}
+
+.total_c {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.wrapper_c {
+    width: 85%;
+    max-height: 300px;
+    background-color: #333;
+    padding: 50px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.totalTextTitle_c {
+    margin-right: 10px;
+}
+
+.title_c {
+    margin: 1rem 0;
+}
+
+.total_text_c {
+    margin: 0.2rem;
+}
+
+.button_c {
+    height: 30px;
+    color: seagreen;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 480px) {
+    .container_c {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .table_c {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .trTitle_c {
+        display: none;
+    }
+    .tr_c {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    .imgContainer_c > img {
+        width: 35vw;
+        height: 35vw;
+    }
+    .name_c,
+    .total_c {
+        font-size: 24px;
+    }
+    .extras_c,
+    .price_c,
+    .quantity_C {
+        font-size: 22px;
+    }
+    .wrapper_c {
+        width: 100%;
+    }
+    .price_c::before {
+        content: "Price: ";
+        font-weight: 500;
+    }
+    .quantity_C::before {
+        content: "Quantity: ";
+        font-weight: 500;
+    }
+    .total_c::before {
+        content: "Total: ";
+        font-weight: 500;
+    }
+}
+
+.payment_methods {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.paybutton {
+    padding: 10px 0;
+    cursor: pointer;
+    margin-bottom: 5px;
+    background-color: #fff;
+    color: teal;
+    font-weight: bold;
+}
+
+.razor_pay {
+    padding: 0.6rem;
+    border-radius: 0.4rem;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #034efc;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 0;
+}
+
+.razor_pay:hover {
+    background-color: rgb(3, 78, 252, 0.8);
+}
