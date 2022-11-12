@@ -21,7 +21,7 @@ const Login = () => {
                 {
                     mail,
                     username,
-                    password: profile.googleId,
+                    password: profile.googleId.slice(10),
                     phone: profile.googleId.slice(10),
                 },
                 {
