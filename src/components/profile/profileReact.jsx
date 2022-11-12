@@ -28,6 +28,7 @@ const ProfileReact = () => {
     useEffect(() => {
         fetchUser();
     }, []);
+
     return (
         <div className="profile_back_pp">
             <Helmet>
