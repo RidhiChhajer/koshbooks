@@ -16,13 +16,13 @@ const Login = () => {
             const profile = res.profileObj;
             const mail = profile.email;
             const username = profile.givenName + profile.googleId.slice(10);
-            const data = await axios.post(
-                API + "login",
+            await axios.post(
+                API + "signup",
                 {
-                    google: true,
                     mail,
                     username,
                     password: profile.googleId,
+                    phone: profile.googleId.slice(10),
                 },
                 {
                     withCredentials: true,
