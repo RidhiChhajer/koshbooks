@@ -10,6 +10,7 @@ import axios from "axios";
 import Navbar from "../Navbar";
 import { useHistory } from "react-router-dom";
 import { CartState } from "../../context";
+import API from "../../api/api";
 
 const Cart = () => {
     const { cart } = CartState();
@@ -19,6 +20,17 @@ const Cart = () => {
     const currency = "USD";
     const style = { layout: "vertical" };
     const history = useHistory();
+
+    const [user, setUser] = useState();
+    const fetchUser = async () => {
+        const { data } = await axios.get(API + `user`, {
+            withCredentials: true,
+        });
+        setUser(data);
+    };
+    useEffect(() => {
+        fetchUser();
+    }, []);
 
     const createOrder = async (data) => {
         try {
@@ -179,109 +191,119 @@ const Cart = () => {
                 ></script>
             </Helmet>
             <Navbar />
-            <div className="container_c">
-                <div className="left_c">
-                    <table className="table_c">
-                        <tbody>
-                            <tr className="tr_title">
-                                <th>Product</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                            </tr>
-                        </tbody>
-                        {cart.products.map((product) => (
-                            <tbody key={product._id}>
-                                <tr className="tr_c">
-                                    <td>
-                                        <div className="imgContainer_c">
-                                            <img src={product.image} alt="" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span className="name_c">
-                                            {product.name}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span className="price_c">
-                                            ${product.price}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span className="quantity_c">
-                                            {product.quantity}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span className="total_c">
-                                            ${product.price * product.quantity}
-                                        </span>
-                                    </td>
+            {user ? (
+                <div className="container_c">
+                    <div className="left_c">
+                        <table className="table_c">
+                            <tbody>
+                                <tr className="tr_title">
+                                    <th>Product</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
                                 </tr>
                             </tbody>
-                        ))}
-                    </table>
-                </div>
-                <div className="right_c">
-                    <div className="wrapper_c">
-                        <h2 className="title_c">CART TOTAL</h2>
-                        <div className="total_text_c">
-                            <b className="totalTextTitle_c">Quantity:</b>
-                            {cart.quantity}
-                        </div>
-                        <div className="total_text_c">
-                            <b className="totalTextTitle_c">Total:</b>${" "}
-                            {cart.total}
-                        </div>
-                        {open ? (
-                            <div className="payment_methods">
-                                <button
-                                    className="paybutton"
-                                    onClick={() => setCash(true)}
-                                >
-                                    CASH ON DELIVERY
-                                </button>
-                                <PayPalScriptProvider
-                                    options={{
-                                        "client-id":
-                                            "ASnPxSusZ32j7LyBrGmLMg5MCJe3XmX9Ls18BsfN06oIlom_ZdzhFEeFAJ_tslyVVBt6dc3cf8nOmqJn",
-                                        components: "buttons",
-                                        currency: "USD",
-                                        "disable-funding": "credit,card,p24",
-                                    }}
-                                >
-                                    <ButtonWrapper
-                                        currency={currency}
-                                        showSpinner={false}
-                                    />
-                                </PayPalScriptProvider>
-                                <button
-                                    className="razor_pay"
-                                    onClick={displayRazorpay}
-                                >
-                                    RazorPay
-                                </button>
-                            </div>
-                        ) : (
-                            <button
-                                onClick={() => setOpen(true)}
-                                className="button_c"
-                            >
-                                CHECKOUT NOW!
-                            </button>
-                        )}
+                            {cart.products.map((product) => (
+                                <tbody key={product._id}>
+                                    <tr className="tr_c">
+                                        <td>
+                                            <div className="imgContainer_c">
+                                                <img
+                                                    src={product.image}
+                                                    alt=""
+                                                />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span className="name_c">
+                                                {product.name}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span className="price_c">
+                                                ${product.price}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span className="quantity_c">
+                                                {product.quantity}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span className="total_c">
+                                                $
+                                                {product.price *
+                                                    product.quantity}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            ))}
+                        </table>
                     </div>
+                    <div className="right_c">
+                        <div className="wrapper_c">
+                            <h2 className="title_c">CART TOTAL</h2>
+                            <div className="total_text_c">
+                                <b className="totalTextTitle_c">Quantity:</b>
+                                {cart.quantity}
+                            </div>
+                            <div className="total_text_c">
+                                <b className="totalTextTitle_c">Total:</b>${" "}
+                                {cart.total}
+                            </div>
+                            {open ? (
+                                <div className="payment_methods">
+                                    <button
+                                        className="paybutton"
+                                        onClick={() => setCash(true)}
+                                    >
+                                        CASH ON DELIVERY
+                                    </button>
+                                    <PayPalScriptProvider
+                                        options={{
+                                            "client-id":
+                                                "ASnPxSusZ32j7LyBrGmLMg5MCJe3XmX9Ls18BsfN06oIlom_ZdzhFEeFAJ_tslyVVBt6dc3cf8nOmqJn",
+                                            components: "buttons",
+                                            currency: "USD",
+                                            "disable-funding":
+                                                "credit,card,p24",
+                                        }}
+                                    >
+                                        <ButtonWrapper
+                                            currency={currency}
+                                            showSpinner={false}
+                                        />
+                                    </PayPalScriptProvider>
+                                    <button
+                                        className="razor_pay"
+                                        onClick={displayRazorpay}
+                                    >
+                                        RazorPay
+                                    </button>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={() => setOpen(true)}
+                                    className="button_c"
+                                >
+                                    CHECKOUT NOW!
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                    {cash &&
+                        createOrder({
+                            customer: "Willam Jones",
+                            address: "33 Cali, HK - 64",
+                            total: 500,
+                            method: 2,
+                        })}
                 </div>
-                {cash &&
-                    createOrder({
-                        customer: "Willam Jones",
-                        address: "33 Cali, HK - 64",
-                        total: 500,
-                        method: 2,
-                    })}
-            </div>
+            ) : (
+                <h1>Unauthorized</h1>
+            )}
         </>
     );
 };
