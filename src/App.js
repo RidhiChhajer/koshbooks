@@ -34,7 +34,7 @@ const App = () => {
         <Route exact path='/explore' component={Explore} />
         <Route exact path='/auth' component={() => user === undefined ? <Login /> : <Redirect to='/explore' />} />
         <Route exact path='/books/:id' component={BookDetails} />
-        <Route exact path='/profile' component={() => user === undefined ? <Redirect to='/auth' /> : <Profile />} />
+        <Route exact path='/profile' component={Profile} />
         <Route exact path='/cart' component={Cart} />
         <Route exact path='/ccu' component={Ccu} />
         <Route exact path='/wishlist' component={Wishlist} />
