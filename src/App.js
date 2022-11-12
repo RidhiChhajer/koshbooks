@@ -17,28 +17,31 @@ const App = () => {
 
   const [ load, setLoad ] = useState();
   const [ user, setUser ] = useState();
-  const fetchUser = async () => {
-    setLoad(false);
-    const { data } = await axios.get(API + `user`, {
-      withCredentials: true,
-    });
-    console.log("User");
-    console.log(data);
-    setUser(data);
-    setLoad(true);
-  };
-  useEffect(() => {
+
+  if (!load) {
+    const fetchUser = async () => {
+      const { data } = await axios.get(API + `user`, {
+        withCredentials: true,
+      });
+      console.log("User");
+      console.log(data);
+      setUser(data);
+    };
     fetchUser();
-  }, []);
+  }
+
+  useEffect(() => {
+    setLoad(true)
+  }, [])
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={Landing} />
         <Route exact path='/explore' component={Explore} />
-        <Route exact path='/auth' component={() => load ? (user !== undefined ? <Redirect to='/explore' /> : <Login />) : <Loading />} />
+        <Route exact path='/auth' component={load ? () => (user !== undefined ? <Redirect to='/explore' /> : <Login />) : <Loading />} />
         <Route exact path='/books/:id' component={BookDetails} />
-        <Route exact path='/profile' component={() => load ? (user !== undefined ? <Profile /> : <Redirect to="/auth" />) : <Loading />} />
+        <Route exact path='/profile' component={load ? () => (user !== undefined ? <Profile /> : <Redirect to="/auth" />) : <Loading />} />
         <Route exact path='/cart' component={Cart} />
         <Route exact path='/ccu' component={Ccu} />
         <Route exact path='/wishlist' component={Wishlist} />
