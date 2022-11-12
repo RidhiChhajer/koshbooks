@@ -5,7 +5,7 @@ import Navbar from "../Navbar";
 import { useParams, useHistory } from "react-router-dom";
 import API from "../../api/api";
 import axios from "axios";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { CartState } from "../../context";
 
 const BookDetails = () => {
@@ -15,6 +15,17 @@ const BookDetails = () => {
     const [price, setPrice] = useState(0);
     const history = useHistory();
     const { cart, setCart } = CartState();
+
+    const [user, setUser] = useState();
+    const fetchUser = async () => {
+        const { data } = await axios.get(API + `user`, {
+            withCredentials: true,
+        });
+        setUser(data);
+    };
+    useEffect(() => {
+        fetchUser();
+    }, []);
 
     const addQuantity = () => {
         if (quantity < 10) setQuantity(quantity + 1);
@@ -203,9 +214,8 @@ const BookDetails = () => {
                                                     class="round-black-btn pointer"
                                                     onClick={() => {
                                                         if (
-                                                            Cookies.get(
-                                                                "user_sid"
-                                                            ) !== undefined
+                                                            user.username !==
+                                                            undefined
                                                         ) {
                                                             handleClick();
                                                         } else {

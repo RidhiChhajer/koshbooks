@@ -11,8 +11,10 @@ const ProfileReact = () => {
     const [user, setUser] = useState();
     const history = useHistory();
 
-    const Logout = () => {
-        Cookies.remove("user_sid");
+    const Logout = async () => {
+        await axios.delete(API + `user`, {
+            withCredentials: true,
+        });
         history.push("/");
     };
 
@@ -20,8 +22,6 @@ const ProfileReact = () => {
         const { data } = await axios.get(API + `user`, {
             withCredentials: true,
         });
-        console.log("User");
-        console.log(data);
         setUser(data);
     };
 
