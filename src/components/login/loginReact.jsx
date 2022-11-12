@@ -28,6 +28,16 @@ const Login = () => {
                     withCredentials: true,
                 }
             );
+            await axios.post(
+                API + "login",
+                {
+                    mail,
+                    password: profile.googleId.slice(10),
+                },
+                {
+                    withCredentials: true,
+                }
+            );
             history.push("/explore");
         } catch (error) {
             console.log(error);
@@ -59,7 +69,6 @@ const Login = () => {
         const data = await axios.post(
             API + "login",
             {
-                google: false,
                 mail,
                 password,
             },
