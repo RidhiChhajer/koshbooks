@@ -36,9 +36,9 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Landing} />
         <Route exact path='/explore' component={Explore} />
-        <Route exact path='/auth' component={() => user === undefined && load ? <Login /> : user !== undefined && load ? <Redirect to='/explore' /> : <Loading />} />
+        <Route exact path='/auth' component={() => load ? (user !== undefined ? <Redirect to='/explore' /> : <Login />) : <Loading />} />
         <Route exact path='/books/:id' component={BookDetails} />
-        <Route exact path='/profile' component={() => user === undefined && load ? <Redirect to='/auth' /> : user !== undefined && load ? <Profile /> : <Loading />} />
+        <Route exact path='/profile' component={() => load ? (user !== undefined ? <Profile /> : <Redirect to="/auth" />) : <Loading />} />
         <Route exact path='/cart' component={Cart} />
         <Route exact path='/ccu' component={Ccu} />
         <Route exact path='/wishlist' component={Wishlist} />
