@@ -14,7 +14,7 @@ const BookDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const [price, setPrice] = useState(0);
     const history = useHistory();
-    const { cart, setCart } = CartState();
+    const { setCart } = CartState();
 
     const [user, setUser] = useState();
     const fetchUser = async () => {
@@ -49,7 +49,7 @@ const BookDetails = () => {
 
     const handleClick = () => {
         setCart((prev) => ({
-            products: [...prev.products, book],
+            products: [...prev.products, { ...book, quantity }],
             quantity: prev.quantity + quantity,
             total: prev.total + price,
         }));
