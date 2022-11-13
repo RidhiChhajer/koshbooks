@@ -11,7 +11,6 @@ import { CartState } from "../../context";
 const BookDetails = () => {
     const { id } = useParams();
     const [book, setBook] = useState();
-    const [product, setProduct] = useState();
     const [quantity, setQuantity] = useState(1);
     const [price, setPrice] = useState(0);
     const history = useHistory();
@@ -49,9 +48,8 @@ const BookDetails = () => {
     }, []);
 
     const handleClick = () => {
-        setProduct(...book, quantity);
         setCart((prev) => ({
-            products: [...prev.products, product],
+            products: [...prev.products, book],
             quantity: prev.quantity + quantity,
             total: prev.total + price,
         }));
