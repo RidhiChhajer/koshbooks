@@ -49,7 +49,7 @@ const BookDetails = () => {
 
     const handleClick = () => {
         setCart((prev) => ({
-            products: [...prev.products, book],
+            products: [...prev.products, { ...book, quantity }],
             quantity: prev.quantity + quantity,
             total: prev.total + price,
         }));

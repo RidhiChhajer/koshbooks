@@ -19,8 +19,6 @@ const App = () => {
     const { data } = await axios.get(API + `user`, {
       withCredentials: true,
     });
-    console.log("User");
-    console.log(data);
     setUser(data);
   };
   useEffect(() => {

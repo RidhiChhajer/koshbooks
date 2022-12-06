@@ -8,7 +8,7 @@ import {
 } from "@paypal/react-paypal-js";
 import axios from "axios";
 import Navbar from "../Navbar";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { CartState } from "../../context";
 import API from "../../api/api";
 
@@ -216,9 +216,11 @@ const Cart = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            <span className="name_c">
-                                                {product.name}
-                                            </span>
+                                            <Link to={`/books/${product._id}`}>
+                                                <span className="name_c">
+                                                    {product.name}
+                                                </span>
+                                            </Link>
                                         </td>
                                         <td>
                                             <span className="price_c">
