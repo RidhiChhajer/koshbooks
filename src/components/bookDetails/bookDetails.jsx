@@ -13,19 +13,7 @@ const BookDetails = () => {
     const [book, setBook] = useState();
     const [quantity, setQuantity] = useState(1);
     const [price, setPrice] = useState(0);
-    const history = useHistory();
     const { setCart } = CartState();
-
-    const [user, setUser] = useState();
-    const fetchUser = async () => {
-        const { data } = await axios.get(API + `user`, {
-            withCredentials: true,
-        });
-        setUser(data);
-    };
-    useEffect(() => {
-        fetchUser();
-    }, []);
 
     const addQuantity = () => {
         if (quantity < 10) setQuantity(quantity + 1);
@@ -47,11 +35,24 @@ const BookDetails = () => {
         fetchBook();
     }, []);
 
+    // const handleClick = () => {
+    //     setCart((prev) => ({
+    //         products: [...prev.products, { ...book, quantity }],
+    //         quantity: prev.quantity + quantity,
+    //         total: prev.total + price,
+    //     }));
+    // };
+
     const handleClick = () => {
         setCart((prev) => ({
-            products: [...prev.products, { ...book, quantity }],
+            products: !prev.products.has(book._id)
+                ? prev.products.set(book._id, { ...book, quantity })
+                : prev.products.set(book._id, {
+                      ...book,
+                      quantity: prev.products.get(book._id).quantity + quantity,
+                  }),
             quantity: prev.quantity + quantity,
-            total: prev.total + price,
+            total: prev.total + price * quantity,
         }));
     };
 
@@ -213,16 +214,7 @@ const BookDetails = () => {
                                                 <div
                                                     class="round-black-btn pointer"
                                                     onClick={() => {
-                                                        if (
-                                                            user.username !==
-                                                            undefined
-                                                        ) {
-                                                            handleClick();
-                                                        } else {
-                                                            history.push(
-                                                                "/auth"
-                                                            );
-                                                        }
+                                                        handleClick();
                                                     }}
                                                 >
                                                     Add to Cart

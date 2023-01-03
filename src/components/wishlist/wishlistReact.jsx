@@ -8,11 +8,15 @@ import Navbar from "../Navbar";
 
 const WishlistReact = () => {
     const [books, setBooks] = useState();
+    const [loadBooks, setLoadBooks] = useState(false);
+
     const fetchBooks = async () => {
+        setLoadBooks(true);
         const { data } = await axios.get(API + "wish", {
             withCredentials: true,
         });
         setBooks(data.wishlist);
+        setLoadBooks(false);
     };
 
     useEffect(() => {
@@ -31,11 +35,18 @@ const WishlistReact = () => {
                 ></script>
             </Helmet>
             <Navbar />
+
             <div class="featured-products-wl">
                 {books != null && books.length > 0 ? (
-                    books.map((book, index) => (
-                        <Book book={book} key={index} isWR={true} />
-                    ))
+                    <>
+                        {loadBooks ? (
+                            <i class="fa-solid fa-circle-notch fa-spin load"></i>
+                        ) : (
+                            books.map((book, index) => (
+                                <Book book={book} key={index} isWR={true} />
+                            ))
+                        )}
+                    </>
                 ) : (
                     <h1>No Book</h1>
                 )}

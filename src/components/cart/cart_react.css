@@ -11,6 +11,14 @@
     flex: 1;
 }
 
+.login {
+    width: 100%;
+    padding: 0.5rem 0;
+    color: seagreen;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
 .imgContainer_c > img {
     width: 100px;
     height: 100px;
@@ -65,6 +73,15 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 20px;
+}
+
+.delete {
+    color: red;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
 }
 
 @media screen and (max-width: 480px) {

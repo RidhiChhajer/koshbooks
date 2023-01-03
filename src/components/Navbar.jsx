@@ -2,6 +2,7 @@ import React from "react";
 import "./nav.css";
 import { Link } from "react-router-dom";
 import { CartState } from "../context";
+import Logo from "../assets/logo-removebg-preview.png";
 
 const Navbar = () => {
     const { cart } = CartState();
@@ -10,7 +11,7 @@ const Navbar = () => {
             <div class="navigation">
                 <Link to="/">
                     <img
-                        src="https://raw.githubusercontent.com/RidhiChhajer/koshbooks-website/main/koshbooks-website/assets/logo-removebg-preview.png"
+                        src={Logo}
                         id="header-img"
                         alt="KoshBooks Logo"
                         width="80"

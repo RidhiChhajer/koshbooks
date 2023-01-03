@@ -454,6 +454,14 @@ nav .icon-links {
     transition: all 1s ease-in-out;
 }
 
+.load {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    padding: 9rem 0;
+}
+
 /* .product-wrap .product-description > .price {
     font-size: 1.1rem;
     margin: 0px;

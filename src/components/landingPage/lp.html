@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <title>KoshBooks</title>
-        <!-- <link rel="stylesheet" href="lp.css"> -->
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -25,40 +24,29 @@
         />
         <link rel="stylesheet" href="lp.css" />
     </head>
-
     <body>
-        <!-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,300;1,400&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <header id="header"> -->
-        <img src="logo-removebg-preview.png" id="header-img" alt="Soygo Logo" />
-        <form action="../signup/index.html">
-            <button class="btn" type="submit">Sign Up</button>
-        </form>
-        <!-- <nav id="nav-bar">
-    <h2>Menu</h2>
-    <div class="nav-links"> -->
-
-        <!-- <a href="#pricing" class="nav-link">Pricing</a>
-      <a href="#contact" class="nav-link">Contact Us</a> -->
-        <!-- </div>
-    <i class="las la-times btn-close"></i>
-  </nav> -->
-        <!-- <i class="las la-bars btn-menu"></i> -->
-        <!-- </header> -->
+        <header>
+            <img
+                src="logo-removebg-preview.png"
+                id="header-img"
+                alt="Soygo Logo"
+            />
+            <a class="btn" type="submit" href="/auth"> Sign Up </a>
+        </header>
         <main>
             <section id="home">
-                <div class="overlay"></div>
+                <div class="overlayy"></div>
                 <div class="header-message">
                     <h2>
-                        Drink Wild. <br />Hangout With Friends. <br />Establish
-                        Deep Connection.
+                        Let's Read and Escape Together. <br />
+                        Connect by Disconnecting
                     </h2>
                     <p>
-                        Start your day with us, grab one cup and help us to
-                        spread love in this world.
+                        Start your day with a book, grab a cup and experience
+                        the changing world around you.
                     </p>
                     <div>
-                        <a href="../explore/explore.html">Explore</a>
+                        <a href="/explore">Explore</a>
                     </div>
                 </div>
             </section>
@@ -70,42 +58,39 @@
                 <div class="services">
                     <div class="service">
                         <img
-                            class="services-images"
-                            src="https://media.istockphoto.com/photos/knowledge-sharing-between-people-picture-id1153885263?k=20&m=1153885263&s=612x612&w=0&h=TYxLn0zwCILB4-OYCN6pCdyvTVKa_KmTh8PZlXm_GNg="
-                            class="service-icon"
-                            alt="Hot beverages"
+                            class="service-images service-icon"
+                            src="https://png.pngtree.com/png-clipart/20210225/ourlarge/pngtree-brown-ordinary-open-door-clipart-png-image_2953255.jpg"
+                            alt="Eco-friendly"
                         />
                         <div class="service-message">
-                            <h3>Always serve at the right temperature!</h3>
+                            <h3>Second hand and new book available!</h3>
                             <p>
-                                We always assure that the drinks you order to us
-                                is neither hot nor cold. Depending on your
-                                request, we will send it at a preserved
-                                temperature so that it will satisfy your taste.
+                                Buy second hand books and get great deals. Be a
+                                part of change with us. Get the fresh and
+                                second-hand copies all at one place.
                             </p>
                         </div>
                     </div>
                     <div class="service">
                         <img
                             class="services-images"
-                            src="https://media.istockphoto.com/photos/mailbox-with-books-3d-rendering-isolated-on-white-background-picture-id1130336342?k=20&m=1130336342&s=612x612&w=0&h=3XgQd8xebYCzHsvzvxYCRbKP-Fu311-uI78zyP_8aI0="
-                            alt="Fast delivery"
+                            src="https://media.istockphoto.com/vectors/books-swap-exchange-or-crossing-vector-illustration-with-hand-gives-vector-id1328717786?k=20&m=1328717786&s=612x612&w=0&h=g_MFweJ45fWDd3m9dk2kNO9yqZ6ERKiOUk66rDhBOAk="
+                            alt="experience something new"
                         />
                         <div class="service-message">
-                            <h3>Delivery in no time!</h3>
+                            <h3>Exchange/ Book Swap!</h3>
                             <p>
-                                We make sure that all the orders will be
-                                delivered as soon as the processing took place.
-                                We would not want to delay any moment for your
-                                favorite drinks.
+                                {" "} Share what you have without risking any
+                                information. Exchang your books for a period or
+                                swap them with the people in need and let us
+                                deliver and do all the work.
                             </p>
                         </div>
                     </div>
                     <div class="service">
                         <img
-                            class="services-images"
+                            class="services-images service-icon"
                             src="https://raw.githubusercontent.com/Ming-desu/fcc-landing-page/7cb6177f2965ecc78fca9926d7dceb34c0b03dfc/img/undraw_environment_iaus.svg"
-                            class="service-icon"
                             alt="Eco-friendly"
                         />
                         <div class="service-message">
@@ -133,38 +118,12 @@
                     allowfullscreen
                 ></iframe>
             </section>
-            <!-- <section id="pricing">
-      <h2>Our humble menu</h2>
-      <div class="prices">
-        <div class="price">
-          <img src="https://raw.githubusercontent.com/Ming-desu/fcc-landing-page/master/img/cup-of-taho.png" alt="Cup of Taho">
-          <h3>Soy-trawberry</h3>
-          <span>$ 2.75</span>
-        </div>
-        <div class="price">
-          <img src="https://raw.githubusercontent.com/Ming-desu/fcc-landing-page/master/img/cup-of-taho.png" alt="Cup of Taho">
-          <h3>Soy-ube deluxe</h3>
-          <span>$ 2.55</span>
-        </div>
-        <div class="price">
-          <img src="https://raw.githubusercontent.com/Ming-desu/fcc-landing-page/master/img/cup-of-taho.png" alt="Cup of Taho">
-          <h3>Matcha-soy</h3>
-          <span>$ 2.65</span>
-        </div>
-        <div class="price">
-          <img src="https://raw.githubusercontent.com/Ming-desu/fcc-landing-page/master/img/cup-of-taho.png" alt="Cup of Taho">
-          <h3>Kamote-soy</h3>
-          <span>$ 2.45</span>
-        </div>
-      </div>
-      <button type="button" class="btn-view-more">View More</button>
-    </section> -->
             <section id="contact">
                 <div class="contact-us">
                     <h2>We are right here.</h2>
                     <p>How can we assist you.</p>
                 </div>
-                <form action="../confirmation-contact-us/ccu.html" id="form">
+                <form action="/" id="form" method="get">
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <input
@@ -190,6 +149,5 @@
                 </form>
             </section>
         </main>
-        <script src="lp.js" charset="utf-8"></script>
     </body>
 </html>

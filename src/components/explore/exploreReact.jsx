@@ -84,36 +84,40 @@ const Explore = () => {
                             />
                         </div>
                     </div>
-                    <div class="featured-products">
-                        {books != null ? (
-                            search(books).map((book, index) => {
-                                if (
-                                    wishlist &&
-                                    wishlist.findIndex(
-                                        (item) => item._id === book._id
-                                    ) > -1
-                                ) {
-                                    return (
-                                        <Book
-                                            book={book}
-                                            key={index}
-                                            isFavorite={true}
-                                        />
-                                    );
-                                } else {
-                                    return (
-                                        <Book
-                                            book={book}
-                                            key={index}
-                                            isFavorite={false}
-                                        />
-                                    );
-                                }
-                            })
-                        ) : (
-                            <h1>Books not found</h1>
-                        )}
-                    </div>
+                    {loadBooks ? (
+                        <i class="fa-solid fa-circle-notch fa-spin load"></i>
+                    ) : (
+                        <div class="featured-products">
+                            {books != null ? (
+                                search(books).map((book, index) => {
+                                    if (
+                                        wishlist &&
+                                        wishlist.findIndex(
+                                            (item) => item._id === book._id
+                                        ) > -1
+                                    ) {
+                                        return (
+                                            <Book
+                                                book={book}
+                                                key={index}
+                                                isFavorite={true}
+                                            />
+                                        );
+                                    } else {
+                                        return (
+                                            <Book
+                                                book={book}
+                                                key={index}
+                                                isFavorite={false}
+                                            />
+                                        );
+                                    }
+                                })
+                            ) : (
+                                <h1>Books not found</h1>
+                            )}
+                        </div>
+                    )}
                 </div>
             </body>
         </>

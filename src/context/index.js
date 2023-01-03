@@ -6,7 +6,7 @@ const CartContext = ({ children }) => {
     const [ cart, setCart ] = useState({
         quantity: 0,
         total: 0,
-        products: [],
+        products: new Map(),
     })
     return (
         <Cart.Provider

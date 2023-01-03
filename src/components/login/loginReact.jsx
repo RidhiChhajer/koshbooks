@@ -209,7 +209,7 @@ const Login = () => {
                                 />
                                 <span class="border"></span>
                             </div>
-                            <a href="#">Forgot your password?</a>
+                            <div>Forgot your password?</div>
                             <button class="btn1">Sign In</button>
                         </form>
                     </div>

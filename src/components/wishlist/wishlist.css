@@ -333,6 +333,14 @@ a.remove:hover {
     width: 35%;
 }
 
+.load {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    padding: 9rem 0;
+}
+
 /* added by ridhi */
 
 @media only screen and (max-width: 39.375em) {

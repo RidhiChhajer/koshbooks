@@ -1,8 +1,23 @@
 import { Helmet } from "react-helmet";
 import "./lp.css";
 import Logo from "../../assets/logo-removebg-preview.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import API from "../../api/api";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
+    const [user, setUser] = useState();
+    const fetchUser = async () => {
+        const { data } = await axios.get(API + `user`, {
+            withCredentials: true,
+        });
+        setUser(data);
+    };
+    useEffect(() => {
+        fetchUser();
+    }, []);
+
     return (
         <>
             <Helmet>
@@ -28,10 +43,18 @@ const Landing = () => {
                     href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
                 />
             </Helmet>{" "}
-            <img src={Logo} id="header-img" alt="Soygo Logo" />
-            <a class="btn" type="submit" href="/auth">
-                Sign Up
-            </a>
+            <header>
+                <img src={Logo} id="header-img" alt="Soygo Logo" />
+                {user === undefined ? (
+                    <Link class="btn" to="/auth">
+                        Sign Up
+                    </Link>
+                ) : (
+                    <Link class="btn" to="/explore">
+                        Sign Up
+                    </Link>
+                )}
+            </header>
             <main>
                 <section id="home">
                     <div class="overlayy"></div>
@@ -45,7 +68,7 @@ const Landing = () => {
                             experience the changing world around you.
                         </p>
                         <div>
-                            <a href="/explore">Explore</a>
+                            <Link to="/explore">Explore</Link>
                         </div>
                     </div>
                 </section>

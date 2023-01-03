@@ -1,2 +1,2 @@
-const API = "https://koshbooks.herokuapp.com/";
+const API = "https://koshbooks-server.vercel.app/";
 export default API;

@@ -13,10 +13,10 @@ import { CartState } from "../../context";
 import API from "../../api/api";
 
 const Cart = () => {
-    const { cart } = CartState();
+    const { cart, setCart } = CartState();
     const [open, setOpen] = useState(false);
     const [cash, setCash] = useState(false);
-    const amount = 0;
+    var amount = 0;
     const currency = "USD";
     const style = { layout: "vertical" };
     const history = useHistory();
@@ -43,6 +43,11 @@ const Cart = () => {
             // res.status === 201 && history.push("/orders/" + res.data._id);
             // dispatch(reset());
             history.push("/ccu");
+            setCart({
+                quantity: 0,
+                total: 0,
+                products: new Map(),
+            });
         } catch (error) {
             console.log(error);
         }
@@ -135,7 +140,6 @@ const Cart = () => {
             alert("Server error. Are you online?");
             return;
         }
-
         const { amount, id: order_id, currency } = result.data;
 
         const options = {
@@ -159,7 +163,17 @@ const Cart = () => {
                     data
                 );
 
-                alert(result.data.msg);
+                if (result.status === 200) {
+                    alert("Payment Successful");
+                    setCart({
+                        quantity: 0,
+                        total: 0,
+                        products: new Map(),
+                    });
+                    history.push("/ccu");
+                } else {
+                    alert("Payment Unsuccessful");
+                }
             },
             prefill: {
                 name: "Soumya Dey",
@@ -173,10 +187,24 @@ const Cart = () => {
                 color: "#61dafb",
             },
         };
-
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();
     }
+
+    const Delete = (id) => {
+        if (cart.products.has(id)) {
+            var amount = cart.products.get(id).price;
+            var quantity = cart.products.get(id).quantity;
+            cart.products.delete(id);
+            setCart((prev) => ({
+                quantity: prev.quantity - quantity,
+                total: prev.total - quantity * amount,
+                products: prev.products,
+            }));
+        } else {
+            console.log("No");
+        }
+    };
 
     return (
         <>
@@ -191,121 +219,133 @@ const Cart = () => {
                 ></script>
             </Helmet>
             <Navbar />
-            {user ? (
-                <div className="container_c">
-                    <div className="left_c">
-                        <table className="table_c">
-                            <tbody>
-                                <tr className="tr_title">
-                                    <th>Product</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
+
+            <div className="container_c">
+                <div className="left_c">
+                    <table className="table_c">
+                        <tbody>
+                            <tr className="tr_title">
+                                <th>Product</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </tbody>
+                        {[...cart.products.values()].map((val) => (
+                            <tbody key={val._id}>
+                                <tr className="tr_c">
+                                    <td>
+                                        <div className="imgContainer_c">
+                                            <img src={val.image} alt="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <Link to={`/books/${val._id}`}>
+                                            <span className="name_c">
+                                                {val.name}
+                                            </span>
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <span className="price_c">
+                                            ${val.price}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span className="quantity_c">
+                                            {val.quantity}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span className="total_c">
+                                            ${val.price * val.quantity}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() => Delete(val._id)}
+                                            class="delete"
+                                        >
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
-                            {cart.products.map((product) => (
-                                <tbody key={product._id}>
-                                    <tr className="tr_c">
-                                        <td>
-                                            <div className="imgContainer_c">
-                                                <img
-                                                    src={product.image}
-                                                    alt=""
-                                                />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <Link to={`/books/${product._id}`}>
-                                                <span className="name_c">
-                                                    {product.name}
-                                                </span>
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <span className="price_c">
-                                                ${product.price}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className="quantity_c">
-                                                {product.quantity}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className="total_c">
-                                                $
-                                                {product.price *
-                                                    product.quantity}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            ))}
-                        </table>
-                    </div>
-                    <div className="right_c">
-                        <div className="wrapper_c">
-                            <h2 className="title_c">CART TOTAL</h2>
-                            <div className="total_text_c">
-                                <b className="totalTextTitle_c">Quantity:</b>
-                                {cart.quantity}
-                            </div>
-                            <div className="total_text_c">
-                                <b className="totalTextTitle_c">Total:</b>${" "}
-                                {cart.total}
-                            </div>
-                            {open ? (
-                                <div className="payment_methods">
-                                    <button
-                                        className="paybutton"
-                                        onClick={() => setCash(true)}
-                                    >
-                                        CASH ON DELIVERY
-                                    </button>
-                                    <PayPalScriptProvider
-                                        options={{
-                                            "client-id":
-                                                "ASnPxSusZ32j7LyBrGmLMg5MCJe3XmX9Ls18BsfN06oIlom_ZdzhFEeFAJ_tslyVVBt6dc3cf8nOmqJn",
-                                            components: "buttons",
-                                            currency: "USD",
-                                            "disable-funding":
-                                                "credit,card,p24",
-                                        }}
-                                    >
-                                        <ButtonWrapper
-                                            currency={currency}
-                                            showSpinner={false}
-                                        />
-                                    </PayPalScriptProvider>
-                                    <button
-                                        className="razor_pay"
-                                        onClick={displayRazorpay}
-                                    >
-                                        RazorPay
-                                    </button>
-                                </div>
-                            ) : (
-                                <button
-                                    onClick={() => setOpen(true)}
-                                    className="button_c"
-                                >
-                                    CHECKOUT NOW!
-                                </button>
-                            )}
-                        </div>
-                    </div>
-                    {cash &&
-                        createOrder({
-                            customer: "Willam Jones",
-                            address: "33 Cali, HK - 64",
-                            total: 500,
-                            method: 2,
-                        })}
+                        ))}
+                    </table>
                 </div>
-            ) : (
-                <h1>Unauthorized</h1>
-            )}
+
+                <div className="right_c">
+                    <div className="wrapper_c">
+                        <h2 className="title_c">CART TOTAL</h2>
+                        <div className="total_text_c">
+                            <b className="totalTextTitle_c">Quantity:</b>
+                            {cart.quantity}
+                        </div>
+                        <div className="total_text_c">
+                            <b className="totalTextTitle_c">Total:</b>${" "}
+                            {cart.products.forEach(
+                                (val, key) =>
+                                    (amount += val.quantity * val.price)
+                            )}
+                            {amount}
+                        </div>
+                        {open ? (
+                            <div className="payment_methods">
+                                <button
+                                    className="paybutton"
+                                    onClick={() => setCash(true)}
+                                >
+                                    CASH ON DELIVERY
+                                </button>
+                                <PayPalScriptProvider
+                                    options={{
+                                        "client-id":
+                                            "ASnPxSusZ32j7LyBrGmLMg5MCJe3XmX9Ls18BsfN06oIlom_ZdzhFEeFAJ_tslyVVBt6dc3cf8nOmqJn",
+                                        components: "buttons",
+                                        currency: "USD",
+                                        "disable-funding": "credit,card,p24",
+                                    }}
+                                >
+                                    <ButtonWrapper
+                                        currency={currency}
+                                        showSpinner={false}
+                                    />
+                                </PayPalScriptProvider>
+                                <button
+                                    className="razor_pay"
+                                    onClick={displayRazorpay}
+                                >
+                                    RazorPay
+                                </button>
+                            </div>
+                        ) : user === undefined ? (
+                            <Link to="/auth">
+                                <button className="login">
+                                    Sign in to continue
+                                </button>
+                            </Link>
+                        ) : (
+                            <button
+                                onClick={() => setOpen(true)}
+                                className="button_c"
+                            >
+                                CHECKOUT NOW!
+                            </button>
+                        )}
+                    </div>
+                </div>
+
+                {cash &&
+                    createOrder({
+                        customer: "Willam Jones",
+                        address: "33 Cali, HK - 64",
+                        total: 500,
+                        method: 2,
+                    })}
+            </div>
         </>
     );
 };
