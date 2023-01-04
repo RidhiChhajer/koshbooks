@@ -51,7 +51,7 @@ const Landing = () => {
                     </Link>
                 ) : (
                     <Link class="btn" to="/explore">
-                        Sign Up
+                        Buy a Book
                     </Link>
                 )}
             </header>
