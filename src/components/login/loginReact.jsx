@@ -76,6 +76,7 @@ const Login = () => {
                 withCredentials: true,
             }
         );
+        console.log(data);
         if (data.data.user != null) {
             history.push("/explore");
         } else {
