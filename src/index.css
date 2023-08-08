@@ -5,3 +5,12 @@
     font-style: "sans-serif";
     box-sizing: border-box;
 }
+
+body::-webkit-scrollbar {
+    width: 6px;
+    background-color: #fff;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(69, 153, 101);
+}

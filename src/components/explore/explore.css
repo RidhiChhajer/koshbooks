@@ -151,7 +151,7 @@ nav .icon-links {
 .product-wrap {
     margin: 0 0.4rem 2rem 0.4rem;
     position: relative;
-    height: 20rem;
+    height: 26rem;
     width: 260px;
     background: #eee;
     border-radius: 0.4rem;
@@ -255,7 +255,8 @@ nav .icon-links {
     font-size: 1.4rem;
     font-weight: bold;
     text-align: center;
-    padding: 5px;
+    padding: 1rem 0;
+    line-height: 1.4rem;
 }
 
 .author {

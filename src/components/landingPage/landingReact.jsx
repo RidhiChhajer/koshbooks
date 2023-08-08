@@ -113,7 +113,7 @@ const Landing = () => {
                         <div class="service">
                             <img
                                 class="services-images service-icon"
-                                src="https://raw.githubusercontent.com/Ming-desu/fcc-landing-page/7cb6177f2965ecc78fca9926d7dceb34c0b03dfc/img/undraw_environment_iaus.svg"
+                                src="https://www.attunements.info/wp-content/uploads/2018/12/Love-for-Mother-Earth.jpg"
                                 alt="Eco-friendly"
                             />
                             <div class="service-message">

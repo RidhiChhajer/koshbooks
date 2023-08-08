@@ -6,6 +6,7 @@ import { gapi } from "gapi-script";
 import API from "../../api/api";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import Logo from "../../assets/logo-removebg-preview.png";
 
 const Login = () => {
     const [signup, setSignup] = useState(false);
@@ -134,6 +135,7 @@ const Login = () => {
                             <span>or use your email for registration</span>
                             <div className="put">
                                 <input
+                                    id="name"
                                     type="text"
                                     placeholder="Name"
                                     required
@@ -142,6 +144,7 @@ const Login = () => {
                             </div>
                             <div className="put">
                                 <input
+                                    id="email"
                                     type="email"
                                     placeholder="Email"
                                     required
@@ -150,6 +153,7 @@ const Login = () => {
                             </div>
                             <div className="put">
                                 <input
+                                    id="phone"
                                     type="text"
                                     placeholder="Phone"
                                     required
@@ -157,7 +161,7 @@ const Login = () => {
                                 <span class="border"></span>
                             </div>
                             <div className="put">
-                                <input type="date" required />
+                                <input type="date" id="date" />
                                 <span class="border"></span>
                             </div>
 
@@ -218,11 +222,7 @@ const Login = () => {
                         <div class="overlay">
                             <div class="overlay-panel overlay-left">
                                 <Link to="/">
-                                    <img
-                                        class="logo1"
-                                        src="https://raw.githubusercontent.com/RidhiChhajer/koshbooks-website/main/koshbooks-website/assets/logo-removebg-preview.png"
-                                        alt=""
-                                    />
+                                    <img class="logo1" src={Logo} alt="LOGO" />
                                 </Link>
                                 <h1>Welcome Back!</h1>
                                 <p>
@@ -241,11 +241,7 @@ const Login = () => {
                             </div>
                             <div class="overlay-panel overlay-right">
                                 <Link to="/">
-                                    <img
-                                        class="logo1"
-                                        src="https://raw.githubusercontent.com/RidhiChhajer/koshbooks-website/main/koshbooks-website/assets/logo-removebg-preview.png"
-                                        alt=""
-                                    />
+                                    <img class="logo1" src={Logo} alt="LOGO" />
                                 </Link>
                                 <h1>Hello, Friend!</h1>
                                 <p>

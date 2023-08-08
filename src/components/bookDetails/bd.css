@@ -288,17 +288,17 @@
 
 .item1_bd {
     margin: 2rem;
-    padding: 2rem;
+    padding: 2rem 0;
+    padding-left: 6rem;
     /* background-color: #00f; */
 }
 .item1_bd > img {
     height: 20rem;
-    width: 30rem;
+    width: 20rem;
 }
 
 .item2_bd {
     margin: 2rem;
-    /* background-color: #f00; */
     padding: 2rem;
 }
 

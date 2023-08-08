@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./bd.css";
 import { Helmet } from "react-helmet";
 import Navbar from "../Navbar";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import API from "../../api/api";
 import axios from "axios";
 // import Cookies from "js-cookie";
@@ -83,7 +83,11 @@ const BookDetails = () => {
                             <div class="row">
                                 <div class="content_bd">
                                     <div class="item1_bd">
-                                        <img src={book.image} alt={book.name} />
+                                        <img
+                                            src={book.image}
+                                            alt={book.name}
+                                            // style="border: none; width: 100%;"
+                                        />
                                     </div>
                                     <div class="item2_bd">
                                         <div class="product-dtl">
@@ -167,18 +171,7 @@ const BookDetails = () => {
                                                         Rs {book.price}.00
                                                     </span>
                                                 </div>
-                                                <p>
-                                                    Combining magic, mysticism,
-                                                    wisdom and wonder into an
-                                                    inspiring tale of
-                                                    self-discovery, The
-                                                    Alchemist has become a
-                                                    modern classic, selling
-                                                    millions of copies around
-                                                    the world and transforming
-                                                    the lives of countless
-                                                    readers across generations.
-                                                </p>
+                                                <p>{book?.S_description}</p>
                                             </div>
                                             <div class="product-count">
                                                 <label for="size">
@@ -227,17 +220,7 @@ const BookDetails = () => {
                             <div class="descrip">
                                 <div className="descrip_head">Description</div>
                                 <div class="descrip_content">
-                                    Paulo Coelho's masterpiece tells the
-                                    mystical story of Santiago, an Andalusian
-                                    shepherd boy who yearns to travel in search
-                                    of a worldly treasure. His quest will lead
-                                    him to riches far different—and far more
-                                    satisfying—than he ever imagined. Santiago's
-                                    journey teaches us about the essential
-                                    wisdom of listening to our hearts, of
-                                    recognizing opportunity and learning to read
-                                    the omens strewn along life's path, and,
-                                    most importantly, to follow our dreams.
+                                    {book?.description}
                                 </div>
                             </div>
                             <div className="review_bdd">
